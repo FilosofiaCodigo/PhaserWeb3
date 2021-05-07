@@ -23,7 +23,6 @@ async function optionTradesApp() {
       contract = await getContract(web3)
       var awaitAccounts = async function() {
         accounts = await web3.eth.getAccounts()
-        setAddress(accounts[0])
         displayClickCount(contract)
       }
       awaitAccounts()
