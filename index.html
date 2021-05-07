@@ -29,13 +29,11 @@
 
   function preload ()
   {
-    this.load.setBaseURL('http://labs.phaser.io');
+    this.load.setBaseURL('/');
 
     this.load.image('sky', 'assets/space3.png');
     this.load.image('logo', 'assets/phaser3-logo.png');
     this.load.image('red', 'assets/red.png');
-
-    this.load.setBaseURL('/');
     this.load.image('button', 'assets/button.png');
   }
 
@@ -69,14 +67,14 @@
 
     this.startBtn.on('pointerover', function (event) { /* Do something when the mouse enters */ });
     this.startBtn.on('pointerout', function (event) { /* Do something when the mouse exits. */ });
-    this.startBtn.on('pointerdown', startGame); // Start game on click.
+    this.startBtn.on('pointerdown', phaserClick); // Start game on click.
   }
 
-  function startGame () {
+  function phaserClick () {
     click()
   }
 
-  function setAddress(address_text)
+  function setClickCount(address_text)
   {
     my_address.text = address_text
   }
