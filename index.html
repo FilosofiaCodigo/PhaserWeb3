@@ -26,6 +26,7 @@
   var my_address;
   var button;
   var background;
+  var dice_result;
 
   function preload ()
   {
@@ -35,6 +36,12 @@
     this.load.image('logo', 'assets/phaser3-logo.png');
     this.load.image('red', 'assets/red.png');
     this.load.image('button', 'assets/button.png');
+    this.load.image('1', 'assets/1.png');
+    this.load.image('2', 'assets/2.png');
+    this.load.image('3', 'assets/3.png');
+    this.load.image('4', 'assets/4.png');
+    this.load.image('5', 'assets/5.png');
+    this.load.image('6', 'assets/6.png');
   }
 
   function create ()
@@ -51,6 +58,8 @@
 
     var logo = this.physics.add.image(400, 100, 'logo');
     
+    dice_result = this.add.image(400, 100, '6');
+    
     my_address = this.add.text(20, 50, "Text Objects", { font: "62px Arial Black", fill: "#c51b7d" });
     this.physics.add.existing(my_address);
 
@@ -58,7 +67,7 @@
     my_address.body.setBounce(1, 1);
     my_address.body.setCollideWorldBounds(true);
 
-    emitter.startFollow(my_address.body);
+    //emitter.startFollow(my_address.body);
 
     console.log(this.physics.add)
 
@@ -70,13 +79,22 @@
     this.startBtn.on('pointerdown', phaserClick); // Start game on click.
   }
 
+  function setDice(result)
+  {
+    dice_result.setTexture(result+1)
+    if(result == 5)
+      my_address.text = "You win 35 TGN!"
+    else
+    my_address.text = ""
+  }
+
   function phaserClick () {
     click()
   }
 
   function setClickCount(address_text)
   {
-    my_address.text = address_text
+    //my_address.text = address_text
   }
     </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
