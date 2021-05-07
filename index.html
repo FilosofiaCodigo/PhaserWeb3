@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+</head>
+<body>
+
+  <script>
+  var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    physics: {
+      default: 'arcade',
+      arcade: {
+        gravity: { y: 200 }
+      }
+    },
+    scene: {
+      preload: preload,
+      create: create
+    }
+  };
+
+  var game = new Phaser.Game(config);
+  var my_address;
+  var button;
+  var background;
+
+  function preload ()
+  {
+    this.load.setBaseURL('http://labs.phaser.io');
+
+    this.load.image('sky', 'assets/space3.png');
+    this.load.image('logo', 'assets/phaser3-logo.png');
+    this.load.image('red', 'assets/red.png');
+
+    this.load.setBaseURL('/');
+    this.load.image('button', 'assets/button.png');
+  }
+
+  function create ()
+  {
+    this.add.image(400, 300, 'sky');
+
+    var particles = this.add.particles('red');
+
+    var emitter = particles.createEmitter({
+      speed: 100,
+      scale: { start: 1, end: 0 },
+      blendMode: 'ADD'
+    });
+
+    var logo = this.physics.add.image(400, 100, 'logo');
+    
+    my_address = this.add.text(20, 50, "Text Objects", { font: "62px Arial Black", fill: "#c51b7d" });
+    this.physics.add.existing(my_address);
+
+    my_address.body.setVelocity(100, 200);
+    my_address.body.setBounce(1, 1);
+    my_address.body.setCollideWorldBounds(true);
+
+    emitter.startFollow(my_address.body);
+
+    console.log(this.physics.add)
+
+
+    this.startBtn = this.add.sprite(100, 100, 'button').setInteractive();
+
+    this.startBtn.on('pointerover', function (event) { /* Do something when the mouse enters */ });
+    this.startBtn.on('pointerout', function (event) { /* Do something when the mouse exits. */ });
+    this.startBtn.on('pointerdown', startGame); // Start game on click.
+  }
+
+  function startGame () {
+    click()
+  }
+
+  function setAddress(address_text)
+  {
+    my_address.text = address_text
+  }
+    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js"></script>
+    <script type="text/javascript" src="src/utils.js"></script>
+    <script type="text/javascript" src ="src/index.js"></script>
+</body>
+</html>
