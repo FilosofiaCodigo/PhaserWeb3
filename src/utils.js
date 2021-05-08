@@ -28,3 +28,16 @@ const getContract = async (web3) => {
 	);
 	return contract;
 };
+
+
+const getMyERC20Contract = async (web3) => {
+	const data = await $.getJSON("./contracts/MyERC20.json");
+
+	const netId = await web3.eth.net.getId();
+	const deployedNetwork = data.networks[netId];
+	const contract = new web3.eth.Contract(
+		data.abi,
+		deployedNetwork && deployedNetwork.address
+	);
+	return contract;
+};

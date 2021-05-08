@@ -42,6 +42,7 @@
     this.load.image('4', 'assets/4.png');
     this.load.image('5', 'assets/5.png');
     this.load.image('6', 'assets/6.png');
+    this.load.image('approve', 'assets/approve.png');
   }
 
   function create ()
@@ -77,6 +78,13 @@
     this.startBtn.on('pointerover', function (event) { /* Do something when the mouse enters */ });
     this.startBtn.on('pointerout', function (event) { /* Do something when the mouse exits. */ });
     this.startBtn.on('pointerdown', phaserClick); // Start game on click.
+
+
+    this.approveBtn = this.add.sprite(600, 500, 'approve').setInteractive();
+
+    this.approveBtn.on('pointerover', function (event) { /* Do something when the mouse enters */ });
+    this.approveBtn.on('pointerout', function (event) { /* Do something when the mouse exits. */ });
+    this.approveBtn.on('pointerdown', approveClick); // Start game on click.
   }
 
   function setDice(result)
@@ -90,6 +98,10 @@
 
   function phaserClick () {
     click()
+  }
+
+  function approveClick () {
+    approve()
   }
 
   function setClickCount(address_text)
